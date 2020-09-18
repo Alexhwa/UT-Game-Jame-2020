@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickupController : MonoBehaviour
+public abstract class PickupController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum PickUpState
     {
-        
+        Idle, PickedUp
     }
+    public PickUpState state;
 
+    public abstract void Discard();
 }

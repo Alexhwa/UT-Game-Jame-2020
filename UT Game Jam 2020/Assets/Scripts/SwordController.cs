@@ -95,9 +95,11 @@ public class SwordController : MonoBehaviour
         transform.DOLocalRotate(new Vector3(0, 0, angle - 90), .1f);
     }
 
-    public void PickUpBlade(PickupController pickup)
+    public void PickUpBlade(GameObject pickup)
     {
-
+        pickup.transform.position = transform.position + new Vector3(0, 2f, 0);
+        pickup.transform.SetParent(transform);
+        hasBlade = true;
     }
 
     public void DiscardBlade()
@@ -110,7 +112,10 @@ public class SwordController : MonoBehaviour
         anim.SetTrigger("Swinging");
         StartCoroutine(ResetSwinging(swingCooldown));
 
-       
+       if(outlinedPickup != null)
+        {
+            PickUpBlade(outlinedPickup);
+        }
     }
     private IEnumerator ResetSwinging(float delay)
     {

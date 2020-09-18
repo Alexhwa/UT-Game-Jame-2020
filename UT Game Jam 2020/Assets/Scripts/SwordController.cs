@@ -75,7 +75,7 @@ public class SwordController : MonoBehaviour
      */ 
     private GameObject FindClosestPickup()
     {
-        Collider2D[] foundPickups = Physics2D.OverlapCircleAll(transform.position, pickupRange, pickupLayers);
+        Collider2D[] foundPickups = Physics2D.OverlapCircleAll(bladePos.position, pickupRange, pickupLayers);
 
         GameObject closestPickup = null;
         float distFromClosest = pickupRange * 2;
@@ -110,7 +110,8 @@ public class SwordController : MonoBehaviour
     public void PickUpBlade(GameObject pickup)
     {
         pickup.transform.SetParent(bladePos);
-        pickup.transform.localPosition = new Vector3(0, 2f, 0);
+        pickup.transform.localPosition = Vector3.zero;
+        pickup.GetComponent<PickupController>().PickUp(this);
         hasBlade = true;
     }
 
@@ -118,8 +119,8 @@ public class SwordController : MonoBehaviour
     {
         hasBlade = false;
         outlinedPickup.transform.SetParent(null);
-        outlinedPickup.transform.DORotate(Vector3.zero, .01f);
         outlinedPickup.transform.localScale = Vector3.one;
+        outlinedPickup.GetComponent<PickupController>().Discard();
     }
     public void SwingBlade()
     {

@@ -8,7 +8,16 @@ public abstract class PickupController : MonoBehaviour
     {
         Idle, PickedUp
     }
-    public PickUpState state;
+    public PickUpState state = PickUpState.Idle;
 
-    public abstract void Discard();
+    public virtual void PickUp(SwordController sword)
+    {
+        transform.localRotation = sword.transform.rotation;
+        state = PickUpState.PickedUp;
+    }
+    public virtual void Discard()
+    {
+        transform.eulerAngles = Vector3.zero;
+        state = PickUpState.Idle;
+    }
 }

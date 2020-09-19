@@ -18,9 +18,10 @@ public class WizardController : EnemyController
 
     public override void Attack()
     {
-        enemyState = EnemyState.Attacking;
-        StartCoroutine(ResetAttacking(swordOffset * (spawnPoints.Length - 1) + swordDelay));
+        attackCooldown = swordOffset * (spawnPoints.Length - 1) + swordDelay;
+        base.Attack();
         StartCoroutine(SpawnSwords());
+        anim.SetTrigger("Attacking");
     }
     private IEnumerator SpawnSwords()
     {

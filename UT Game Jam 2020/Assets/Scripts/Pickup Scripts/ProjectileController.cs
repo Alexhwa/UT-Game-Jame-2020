@@ -43,6 +43,7 @@ public class ProjectileController : PickupController
     IEnumerator Die(float delay)
     {
         yield return new WaitForSeconds(delay);
+        transform.DOKill();
         Destroy(gameObject);
     }
 }

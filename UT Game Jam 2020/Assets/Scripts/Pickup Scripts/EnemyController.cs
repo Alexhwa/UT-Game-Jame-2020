@@ -8,10 +8,10 @@ public class EnemyController : PickupController
     public float health;
     public float moveSpeed;
     public float attackRange;
-    public float attackCooldown;
+    protected float attackCooldown;
     public float attackEndLag;
 
-    private Animator anim;
+    protected Animator anim;
     public EnemyState enemyState = EnemyState.NotAttacking; 
 
     public enum EnemyState
@@ -39,6 +39,7 @@ public class EnemyController : PickupController
     }
     public virtual void DoEnemyAI()
     {
+
         if (enemyState != EnemyState.Attacking && enemyState != EnemyState.AttackEndLag)
         {
             if (Vector2.Distance(player.transform.position, transform.position) < attackRange)

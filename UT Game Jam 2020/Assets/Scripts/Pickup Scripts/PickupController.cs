@@ -5,6 +5,19 @@ using DG.Tweening;
 
 public abstract class PickupController : MonoBehaviour
 {
+    [Header("Weapon Stats")]
+    //How fast the sword can be swung with this blade
+    public float weaponSwingSpeed = 1;
+    //How many hits the blade can do without breaking
+    public float weaponDurability = 1;
+    //How much damage this blade does to enemies
+    public float weaponDamage = 1;
+    public float weaponKnockback = 2;
+
+    //[HideInInspector]
+    //Used to check if projectile will hurt enemy and when throwing objects
+    public bool playerOwned = false;
+
     public enum PickUpState
     {
         Idle, PickedUp, Disabled
@@ -39,5 +52,14 @@ public abstract class PickupController : MonoBehaviour
     public virtual bool IsPickupable()
     {
         return true;
+    }
+    public virtual bool DoesDamage()
+    {
+        return (state == PickUpState.PickedUp && GetComponentInParent<SwordController>().swinging) || playerOwned;
+    }
+    public virtual IEnumerator ResetPlayerOwned(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        playerOwned = false;
     }
 }

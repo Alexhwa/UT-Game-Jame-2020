@@ -6,10 +6,8 @@ using DG.Tweening;
 public class ProjectileController : PickupController
 {
     public float speed;
-    public float damage;
+    public float projDamage;
     public float dieTime;
-
-    public bool playerOwned = false;
 
     public override void Start()
     {
@@ -21,7 +19,6 @@ public class ProjectileController : PickupController
     {
         if(state == PickUpState.Idle)
         {
-            print("Moving up");
             transform.DOLocalMove(transform.position + transform.up * speed / 20, .1f);
         }
     }
@@ -30,12 +27,11 @@ public class ProjectileController : PickupController
         base.PickUp(sword);
         transform.localEulerAngles = Vector3.zero;
         transform.DOKill();
-        playerOwned = true;
-        
     }
     public override void Discard()
     {
         transform.SetParent(null);
+        playerOwned = true;
         transform.localScale = Vector3.one;
         state = PickUpState.Idle;
         speed *= 3f;

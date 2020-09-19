@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 123819879593406479}
   - component: {fileID: 8660771898766397730}
   - component: {fileID: -9090941739533099095}
+  - component: {fileID: 2237703029935960949}
   m_Layer: 8
   m_Name: Wizard
   m_TagString: Untagged
@@ -62,11 +63,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c5216493866b314c80bc4caec315085, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponSwingSpeed: 1
+  weaponDurability: 1
+  weaponDamage: 1
+  weaponKnockback: 1
+  playerOwned: 0
   state: 0
   health: 2
   moveSpeed: 2
   attackRange: 8
-  attackCooldown: 3
   attackEndLag: 2.5
   enemyState: 0
   sword: {fileID: 4736698651249755974, guid: aefc7bb003065c245b0fb8527ac4950c, type: 3}
@@ -78,6 +83,27 @@ MonoBehaviour:
   - {fileID: 3532493213909762812}
   swordDelay: 1
   swordOffset: 0.2
+--- !u!50 &2237703029935960949
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668533934932721120}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2354857504119413189
 GameObject:
   m_ObjectHideFlags: 0

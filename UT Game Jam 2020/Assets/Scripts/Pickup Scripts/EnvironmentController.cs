@@ -1,18 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class EnvironmentController : PickupController
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Discard()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        transform.DOLocalMove(transform.position + transform.parent.up * 4, .3f).SetEase(Ease.OutCubic);
+        base.Discard();
+        //Push away on release
+        //Return object to original rotation
+        transform.eulerAngles = Vector3.zero;
     }
 }

@@ -47,3 +47,6 @@ TagManager:
   - name: Pickup
     uniqueID: 2429696743
     locked: 0
+  - name: Sword Hilt
+    uniqueID: 286345377
+    locked: 0

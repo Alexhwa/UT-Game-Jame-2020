@@ -8,8 +8,16 @@ public class EnemyController : PickupController
     public float health;
     public float moveSpeed;
     public float attackRange;
+    public float attackCooldown;
+    public float attackEndLag;
 
     private Animator anim;
+    public EnemyState enemyState = EnemyState.NotAttacking; 
+
+    public enum EnemyState
+    {
+        NotAttacking, Attacking, AttackEndLag
+    }
 
     public override void Start()
     {
@@ -31,13 +39,16 @@ public class EnemyController : PickupController
     }
     public virtual void DoEnemyAI()
     {
-        if(Vector2.Distance(player.transform.position, transform.position) < attackRange)
+        if (enemyState != EnemyState.Attacking && enemyState != EnemyState.AttackEndLag)
         {
-            Attack();
-        }
-        else
-        {
-            MoveTowardPlayer();
+            if (Vector2.Distance(player.transform.position, transform.position) < attackRange)
+            {
+                Attack();
+            }
+            else
+            {
+                MoveTowardPlayer();
+            }
         }
     }
     public virtual void MoveTowardPlayer()
@@ -47,6 +58,31 @@ public class EnemyController : PickupController
     }
     public virtual void Attack()
     {
-
+        enemyState = EnemyState.Attacking;
+        StartCoroutine(ResetAttacking(attackCooldown));
     }
+    public override bool IsPickupable()
+    {
+        return enemyState != EnemyState.Attacking;
+    }
+    public override void Discard()
+    {
+        //Push away on release
+        transform.DOLocalMove(transform.position + transform.parent.up * 4, .3f).SetEase(Ease.OutCubic);
+        base.Discard();
+        //Return object to original rotation
+        transform.eulerAngles = Vector3.zero;
+    }
+    protected IEnumerator ResetAttacking(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        enemyState = EnemyState.AttackEndLag;
+        StartCoroutine(ResetEndLag(attackEndLag));
+    }
+    protected IEnumerator ResetEndLag(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        enemyState = EnemyState.NotAttacking;
+    }
+    
 }

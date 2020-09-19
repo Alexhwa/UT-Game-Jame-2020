@@ -7,16 +7,17 @@ public class SlimeController : MonoBehaviour
     public float jumpCooldown;
     public float jumpEndLag;
     public MoveState moveState = MoveState.NotMoving; 
-
+    
     public enum MoveState
     {
         NotJumping, Jumping, JumpEndLag
     }
-
+    
     public override void Start()
     {
         base.Start();
     }
+    
     public override void MoveTowardPlayer()
     {
         anim.SetTrigger("Jumping");
@@ -28,7 +29,6 @@ public class SlimeController : MonoBehaviour
         ResetJump(jumpCooldown);
         enemyState = EnemyState.NotAttacking;
     }
-
     public override bool IsPickupable()
     {
         return moveState != MoveState.Jumping;

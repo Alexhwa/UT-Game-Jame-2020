@@ -7,12 +7,14 @@ public class ProjectileController : PickupController
 {
     public float speed;
     public float damage;
+    public float dieTime;
 
     public bool playerOwned = false;
 
-    private void Start()
+    public override void Start()
     {
-
+        base.Start();
+        StartCoroutine(Die(dieTime));
     }
 
     private void FixedUpdate()
@@ -25,18 +27,22 @@ public class ProjectileController : PickupController
     }
     public override void PickUp(SwordController sword)
     {
-        transform.SetParent(sword.bladePos);
-        transform.localPosition = Vector3.zero;
-        transform.rotation = sword.transform.rotation;
+        base.PickUp(sword);
+        transform.localEulerAngles = Vector3.zero;
         transform.DOKill();
         playerOwned = true;
-        state = PickUpState.PickedUp;
+        
     }
     public override void Discard()
     {
         transform.SetParent(null);
         transform.localScale = Vector3.one;
         state = PickUpState.Idle;
-        speed *= 2f;
+        speed *= 3f;
+    }
+    IEnumerator Die(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(gameObject);
     }
 }

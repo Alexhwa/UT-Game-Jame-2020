@@ -7,7 +7,7 @@ public abstract class PickupController : MonoBehaviour
 {
     public enum PickUpState
     {
-        Idle, PickedUp, Disabled, Attacking
+        Idle, PickedUp, Disabled
     }
     public PickUpState state = PickUpState.Idle;
     public static GameObject player;
@@ -22,6 +22,7 @@ public abstract class PickupController : MonoBehaviour
 
     public virtual void PickUp(SwordController sword)
     {
+        transform.DOKill();
         transform.SetParent(sword.bladePos);
         transform.localPosition = Vector3.zero;
         transform.localRotation = sword.transform.rotation;
@@ -29,10 +30,10 @@ public abstract class PickupController : MonoBehaviour
     }
     public virtual void Discard()
     {
-        transform.DOLocalMove(transform.position + transform.parent.up * 3, .3f).SetEase(Ease.OutCubic);
+        //Orphanize
         transform.SetParent(null);
+        //Prevent any weird scaling
         transform.localScale = Vector3.one;
-        transform.eulerAngles = Vector3.zero;
         state = PickUpState.Idle;
     }
     public virtual bool IsPickupable()

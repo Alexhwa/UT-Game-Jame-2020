@@ -82,7 +82,8 @@ public class SwordController : MonoBehaviour
         for(int i = 0; i < foundPickups.Length; i++)
         {
             var distFromi = Vector2.Distance(foundPickups[i].transform.position, transform.position);
-            if(distFromi < distFromClosest)
+            var pickupCntrl = foundPickups[i].GetComponent<PickupController>();
+            if(distFromi < distFromClosest && pickupCntrl != null && pickupCntrl.IsPickupable())
             {
                 closestPickup = foundPickups[i].gameObject;
                 distFromClosest = distFromi;
@@ -109,8 +110,6 @@ public class SwordController : MonoBehaviour
 
     public void PickUpBlade(GameObject pickup)
     {
-        pickup.transform.SetParent(bladePos);
-        pickup.transform.localPosition = Vector3.zero;
         pickup.GetComponent<PickupController>().PickUp(this);
         hasBlade = true;
     }
@@ -118,8 +117,6 @@ public class SwordController : MonoBehaviour
     public void DiscardBlade()
     {
         hasBlade = false;
-        outlinedPickup.transform.SetParent(null);
-        outlinedPickup.transform.localScale = Vector3.one;
         outlinedPickup.GetComponent<PickupController>().Discard();
     }
     public void SwingBlade()

@@ -38,7 +38,7 @@ public class TestPlayerMovement : MonoBehaviour
 
         Vector3 moveDirection = new Vector3(moveX, moveY).normalized;
 
-        transform.position += moveDir * SPEED * Time.deltaTime;
+        transform.position += moveDirection * SPEED * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collider)

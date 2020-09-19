@@ -12,18 +12,21 @@ public class ProjectileController : PickupController
 
     private void Start()
     {
+
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if(state == PickUpState.Idle)
         {
             print("Moving up");
-            transform.DOLocalMove(transform.position + transform.up * speed / 10, .1f);
+            transform.DOLocalMove(transform.position + transform.up * speed / 20, .1f);
         }
     }
     public override void PickUp(SwordController sword)
     {
+        transform.SetParent(sword.bladePos);
+        transform.localPosition = Vector3.zero;
         transform.rotation = sword.transform.rotation;
         transform.DOKill();
         playerOwned = true;
@@ -31,6 +34,8 @@ public class ProjectileController : PickupController
     }
     public override void Discard()
     {
+        transform.SetParent(null);
+        transform.localScale = Vector3.one;
         state = PickUpState.Idle;
         speed *= 2f;
     }

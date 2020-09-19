@@ -5,11 +5,12 @@ using DG.Tweening;
 
 public class EnemyController : PickupController
 {
-    public float health;
-    public float moveSpeed;
-    public float attackRange;
-    protected float attackCooldown;
-    public float attackEndLag;
+    [Header("Basic Enemy Variables")]
+    public int health = 2;
+    public float moveSpeed = 3;
+    public float attackRange = 1;
+    protected float attackCooldown = 1;
+    public float attackEndLag = 2;
 
     protected Animator anim;
     public EnemyState enemyState = EnemyState.NotAttacking; 
@@ -28,6 +29,18 @@ public class EnemyController : PickupController
         anim = GetComponentInChildren<Animator>();
         anim.SetFloat("Offset", Random.Range(0f, 3f));
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Pickup") && state != PickUpState.PickedUp)
+        {
+            if (collision.GetComponent<PickupController>().DoesDamage())
+            {
+                GetHit(collision.GetComponentInChildren<PickupController>());
+            }
+        }
+    }
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -71,6 +84,8 @@ public class EnemyController : PickupController
         //Push away on release
         transform.DOLocalMove(transform.position + transform.parent.up * 4, .3f).SetEase(Ease.OutCubic);
         base.Discard();
+        playerOwned = true;
+        StartCoroutine(ResetPlayerOwned(.3f));
         //Return object to original rotation
         transform.eulerAngles = Vector3.zero;
     }
@@ -85,5 +100,18 @@ public class EnemyController : PickupController
         yield return new WaitForSeconds(delay);
         enemyState = EnemyState.NotAttacking;
     }
-    
+    public virtual void GetHit(PickupController pickup)
+    {
+        TakeRecoil(pickup);
+        health--;
+        print("Hit. Health = " + health);
+    }
+    public virtual void TakeRecoil(PickupController hitter)
+    {
+        //Recoil
+        Vector3 recoilForce = transform.position - player.transform.position;
+        Vector3.Normalize(recoilForce);
+        transform.DOKill();
+        transform.DOMove(transform.position + recoilForce * hitter.weaponKnockback, .3f).SetEase(Ease.OutCubic);
+    }
 }

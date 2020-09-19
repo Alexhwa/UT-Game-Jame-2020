@@ -9,6 +9,18 @@ public class EnemyController : PickupController
     public float moveSpeed;
     public float attackRange;
 
+    private Animator anim;
+
+    public override void Start()
+    {
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+        anim = GetComponentInChildren<Animator>();
+        anim.SetFloat("Offset", Random.Range(0f, 3f));
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {

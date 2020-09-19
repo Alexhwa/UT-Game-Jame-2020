@@ -7,7 +7,7 @@ public abstract class PickupController : MonoBehaviour
 {
     public enum PickUpState
     {
-        Idle, PickedUp, Attacking, Disabled
+        Idle, PickedUp, Disabled, Attacking
     }
     public PickUpState state = PickUpState.Idle;
     public static GameObject player;

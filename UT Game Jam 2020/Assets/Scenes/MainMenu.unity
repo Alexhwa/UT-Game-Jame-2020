@@ -465,7 +465,7 @@ PrefabInstance:
     - target: {fileID: 5486882929569872026, guid: f541f3af18bd3d84e912d6c5af9b3511,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1000
+      value: 1900
       objectReference: {fileID: 0}
     - target: {fileID: 5486882929569872026, guid: f541f3af18bd3d84e912d6c5af9b3511,
         type: 3}
@@ -691,7 +691,12 @@ PrefabInstance:
     - target: {fileID: 5486882929569872025, guid: f541f3af18bd3d84e912d6c5af9b3511,
         type: 3}
       propertyPath: m_Text
-      value: Play
+      value: Resume
+      objectReference: {fileID: 0}
+    - target: {fileID: 5486882929569872025, guid: f541f3af18bd3d84e912d6c5af9b3511,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 5486882929569872026, guid: f541f3af18bd3d84e912d6c5af9b3511,
         type: 3}
@@ -751,7 +756,7 @@ PrefabInstance:
     - target: {fileID: 5486882929569872026, guid: f541f3af18bd3d84e912d6c5af9b3511,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 6.8
       objectReference: {fileID: 0}
     - target: {fileID: 5486882929569872026, guid: f541f3af18bd3d84e912d6c5af9b3511,
         type: 3}
@@ -761,7 +766,7 @@ PrefabInstance:
     - target: {fileID: 5486882929569872026, guid: f541f3af18bd3d84e912d6c5af9b3511,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1000
+      value: 1900.46
       objectReference: {fileID: 0}
     - target: {fileID: 5486882929569872026, guid: f541f3af18bd3d84e912d6c5af9b3511,
         type: 3}
@@ -999,9 +1004,7 @@ PrefabInstance:
     - target: {fileID: 7401714496566131104, guid: b75d09cc87c8b4345bc80d82030e11dd,
         type: 3}
       propertyPath: m_Text
-      value: 'Sword of Legen''t: Excalin''t
-
-'
+      value: Game Paused
       objectReference: {fileID: 0}
     - target: {fileID: 7401714496566131104, guid: b75d09cc87c8b4345bc80d82030e11dd,
         type: 3}

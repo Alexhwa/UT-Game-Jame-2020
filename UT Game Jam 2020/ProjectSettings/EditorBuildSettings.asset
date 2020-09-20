@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Menu.unity
+    path: Assets/Scenes/MainMenu.unity
     guid: 7e26c93e6a3d5a2409a9947e13f37fd6
   - enabled: 1
     path: Assets/Scenes/Room.unity
@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 86d9dc0def5e77746bfef6758b89c0b3
   m_configObjects: {}

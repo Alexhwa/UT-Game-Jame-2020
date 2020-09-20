@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class Menu : MonoBehaviour
 {
     public string nextGameScene;
+
     public void PlayGame()
     {
         SceneManager.LoadScene(nextGameScene);
@@ -13,7 +14,7 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        Application.Quit();
         Debug.Log("Quit successful.");
+        Application.Quit();
     }
 }

@@ -15,6 +15,7 @@ public class EnemyController : PickupController
     protected Animator anim;
     public EnemyState enemyState = EnemyState.NotAttacking;
 
+    protected bool pushedBack;
     public enum EnemyState
     {
         NotAttacking, Attacking, AttackEndLag
@@ -31,7 +32,7 @@ public class EnemyController : PickupController
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Pickup") && state != PickUpState.PickedUp)
         {
-            if (collision.GetComponent<PickupController>().DoesDamage() && collision.gameObject != gameObject)
+            if (collision.GetComponent<PickupController>().DoesDamage() && collision.gameObject != gameObject && !pushedBack)
             {
                 GetHit(collision.GetComponentInChildren<PickupController>());
             }
@@ -58,12 +59,17 @@ public class EnemyController : PickupController
             }
             else
             {
+                if (pushedBack)
+                {
+                    return;
+                }
                 MoveTowardPlayer();
             }
         }
     }
     public virtual void MoveTowardPlayer()
     {
+        
         var dirAtPlayer = player.transform.position - transform.position;
         rb.velocity = Vector3.Normalize(dirAtPlayer) * moveSpeed / 10;
     }
@@ -89,6 +95,8 @@ public class EnemyController : PickupController
         StartCoroutine(ResetPlayerOwned(.3f));
         //Return object to original rotation
         transform.eulerAngles = Vector3.zero;
+        pushedBack = true;
+        StartCoroutine(ResetPushedBack());
     }
     protected IEnumerator ResetAttacking(float delay)
     {
@@ -123,9 +131,16 @@ public class EnemyController : PickupController
         recoilForce = Vector3.Normalize(recoilForce);
         transform.DOKill();
         rb.velocity = recoilForce * hitter.weaponKnockback;
+        pushedBack = true;
+        StartCoroutine(ResetPushedBack());
     }
     public virtual void Die()
     {
         Destroy(gameObject);
+    }
+    protected IEnumerator ResetPushedBack()
+    {
+        yield return new WaitForSeconds(.75f);
+        pushedBack = false;
     }
 }

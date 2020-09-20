@@ -23,7 +23,7 @@ public class ChickenController : EnemyController
         if (moveState == MoveState.Idle)
         {
             //Jump
-            anim.SetTrigger("Walking");
+            anim.SetBool("Walking", true);
             rb.velocity = new Vector2(Random.Range(-moveSpeed, moveSpeed), Random.Range(-moveSpeed, moveSpeed));
             moveState = MoveState.Wandering;
             StartCoroutine(ResetWander(Random.Range(wanderInterval/ 2, wanderInterval)));
@@ -34,6 +34,7 @@ public class ChickenController : EnemyController
     {
         yield return new WaitForSeconds(delay);
         rb.velocity = Vector2.zero;
+        anim.SetBool("Walking", false);
         moveState = MoveState.Paused;
         StartCoroutine(ResetJumpLag(Random.Range(pauseTime/2, pauseTime)));
     }

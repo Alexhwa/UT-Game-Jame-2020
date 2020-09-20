@@ -11,7 +11,7 @@ public class SlimeController : EnemyController
     
     public enum MoveState
     {
-        NotMoving, NotJumping, Jumping, JumpEndLag
+         NotJumping, Jumping, JumpEndLag
     }
     public override void Start()
     {
@@ -20,21 +20,25 @@ public class SlimeController : EnemyController
     
     public override void MoveTowardPlayer()
     {
-        anim.SetTrigger("Jumping");
-        var dirAtPlayer = player.transform.position - transform.position;
-        
-        Debug.Log("Successful call to jump animation.");
-        
-        ResetJump(jumpCooldown);
-        enemyState = EnemyState.NotAttacking;
+        if (moveState == MoveState.NotJumping)
+        {
+            //Jump
+            anim.SetTrigger("Jumping");
+            var dirAtPlayer = player.transform.position - transform.position;
+            dirAtPlayer = Vector3.Normalize(dirAtPlayer);
+            rb.velocity = dirAtPlayer * moveSpeed;
+            moveState = MoveState.Jumping;
+            StartCoroutine(ResetJump(jumpCooldown));
+        }
     }
     public override bool IsPickupable()
     {
-        return moveState != MoveState.Jumping;
+        return true;
     }
     protected IEnumerator ResetJump(float delay)
     {
         yield return new WaitForSeconds(delay);
+        rb.velocity = Vector2.zero;
         moveState = MoveState.JumpEndLag;
         StartCoroutine(ResetJumpLag(jumpEndLag));
     }
@@ -42,9 +46,5 @@ public class SlimeController : EnemyController
     {
         yield return new WaitForSeconds(delay);
         moveState = MoveState.NotJumping;
-    }
-    public override void Attack()
-    {
-        enemyState = EnemyState.Attacking;
     }
 }

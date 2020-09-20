@@ -11,6 +11,8 @@ public class WizardController : EnemyController
     public float swordDelay;
     public float swordOffset;
 
+    private List<ProjectileController> swords;
+
     public override void Start()
     {
         base.Start();
@@ -25,7 +27,7 @@ public class WizardController : EnemyController
     }
     private IEnumerator SpawnSwords()
     {
-        List<ProjectileController> swords = new List<ProjectileController>();
+        swords = new List<ProjectileController>();
         for (int i = 0; i < spawnPoints.Length; i++)
         {
             var swordInst = Instantiate(sword, spawnPoints[i].position, transform.rotation);
@@ -57,5 +59,18 @@ public class WizardController : EnemyController
             if(e.state != PickUpState.PickedUp)
                 e.state = PickUpState.Idle;
         }
+    }
+    public override void Die()
+    {
+        for(int i = 0; i < swords.Count; i++)
+        {
+            var swordCntrl =  swords[i].GetComponent<ProjectileController>();
+            if (swordCntrl.state != PickUpState.PickedUp)
+            {
+                swordCntrl.state = PickUpState.Idle;
+            }
+        }
+       
+        base.Die();
     }
 }

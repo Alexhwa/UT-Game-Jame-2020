@@ -15,7 +15,7 @@ TagManager:
   - 
   - Pickup
   - Player
-  - 
+  - PlayerCollide
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 1870034967
     locked: 0
   - name: Pickup
     uniqueID: 2429696743

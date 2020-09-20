@@ -111,6 +111,10 @@ public class EnemyController : PickupController
         TakeRecoil(pickup);
         health--;
         print("Hit. Health = " + health);
+        if(health <= 0)
+        {
+            Die();
+        }
     }
     public virtual void TakeRecoil(PickupController hitter)
     {
@@ -119,5 +123,9 @@ public class EnemyController : PickupController
         recoilForce = Vector3.Normalize(recoilForce);
         transform.DOKill();
         rb.velocity = recoilForce * hitter.weaponKnockback;
+    }
+    public virtual void Die()
+    {
+        Destroy(gameObject);
     }
 }

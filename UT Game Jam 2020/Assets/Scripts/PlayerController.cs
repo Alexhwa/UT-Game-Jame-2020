@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
         print("In player On Trigger");
         if (collision.gameObject.layer.Equals(LayerMask.NameToLayer("Pickup"))){
             var pickup = collision.GetComponentInChildren<PickupController>();
-            if (pickup != null)
+            if (pickup != null && (pickup is ProjectileController && !pickup.playerOwned))
             {
                 print("Hit by: " + collision.name);
             }

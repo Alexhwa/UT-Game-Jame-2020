@@ -28,7 +28,6 @@ public class ChickenController : EnemyController
             moveState = MoveState.Wandering;
             StartCoroutine(ResetWander(Random.Range(wanderInterval/ 2, wanderInterval)));
         }
-
     }
     protected IEnumerator ResetWander(float delay)
     {

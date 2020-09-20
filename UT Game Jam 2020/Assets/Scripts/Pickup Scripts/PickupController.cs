@@ -29,6 +29,8 @@ public abstract class PickupController : MonoBehaviour
     public PickUpState state = PickUpState.Idle;
     public static GameObject player;
 
+    protected AudioManager audioManager;
+
     public virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -36,6 +38,7 @@ public abstract class PickupController : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     public virtual void PickUp(SwordController sword)

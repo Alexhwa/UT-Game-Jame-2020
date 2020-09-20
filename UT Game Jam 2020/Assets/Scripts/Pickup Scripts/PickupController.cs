@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+
+[RequireComponent(typeof(Rigidbody2D))]
 public abstract class PickupController : MonoBehaviour
 {
     [Header("Weapon Stats")]
@@ -18,6 +20,8 @@ public abstract class PickupController : MonoBehaviour
     //Used to check if projectile will hurt enemy and when throwing objects
     public bool playerOwned = false;
 
+    protected Rigidbody2D rb;
+
     public enum PickUpState
     {
         Idle, PickedUp, Disabled
@@ -27,6 +31,7 @@ public abstract class PickupController : MonoBehaviour
 
     public virtual void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player");
@@ -35,6 +40,7 @@ public abstract class PickupController : MonoBehaviour
 
     public virtual void PickUp(SwordController sword)
     {
+        rb.bodyType = RigidbodyType2D.Kinematic;
         transform.DOKill();
         transform.SetParent(sword.bladePos);
         transform.localPosition = Vector3.zero;
@@ -43,6 +49,7 @@ public abstract class PickupController : MonoBehaviour
     }
     public virtual void Discard()
     {
+        rb.bodyType = RigidbodyType2D.Dynamic;
         //Orphanize
         transform.SetParent(null);
         //Prevent any weird scaling

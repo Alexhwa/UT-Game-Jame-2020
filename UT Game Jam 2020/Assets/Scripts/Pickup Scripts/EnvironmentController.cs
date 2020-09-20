@@ -4,9 +4,15 @@ using UnityEngine;
 using DG.Tweening;
 public class EnvironmentController : PickupController
 {
+    public override void Start()
+    {
+        base.Start();
+    }
+
     public override void Discard()
     {
-        transform.DOLocalMove(transform.position + transform.parent.up * 4, .3f).SetEase(Ease.OutCubic);
+        //Push away on release
+        rb.velocity = transform.parent.up * 20;
         base.Discard();
         playerOwned = true;
         StartCoroutine(ResetPlayerOwned(.3f));

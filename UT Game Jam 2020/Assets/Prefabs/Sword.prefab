@@ -53,6 +53,7 @@ MonoBehaviour:
     m_Bits: 256
   swinging: 0
   swingCooldown: 0.3
+  partSys: {fileID: 2876580148310782533}
   noAlpha: {fileID: 2100000, guid: 0e079224ba7734d6683a2406f7c4a620, type: 2}
   outline: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   bladePos: {fileID: 2876580148071018811}

@@ -14,7 +14,7 @@ public class SwordController : MonoBehaviour
     //Swing
     public bool swinging;
     public float swingCooldown;
-    private ParticleSystem partSys;
+    public ParticleSystem partSys;
 
 
     //Outline vars
@@ -29,7 +29,6 @@ public class SwordController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        partSys = GetComponentInChildren<ParticleSystem>();
         anim = GetComponentInChildren<Animator>();
     }
 
@@ -124,7 +123,7 @@ public class SwordController : MonoBehaviour
         swinging = true;
         anim.SetTrigger("Swinging");
         StartCoroutine(ResetSwinging(swingCooldown));
-        partSys.Play();
+        partSys.Play(false);
     }
     private IEnumerator ResetSwinging(float delay)
     {

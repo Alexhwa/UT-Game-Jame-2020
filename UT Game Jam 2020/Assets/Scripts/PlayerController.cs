@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        print("In player On Trigger");
         if (collision.gameObject.layer.Equals(LayerMask.NameToLayer("Pickup"))){
             var pickup = collision.GetComponentInChildren<PickupController>();
             if (pickup != null)

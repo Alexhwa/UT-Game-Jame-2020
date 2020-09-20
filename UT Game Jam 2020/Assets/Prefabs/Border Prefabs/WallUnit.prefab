@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7736068267385974128}
   - component: {fileID: 4439655819872475140}
   m_Layer: 0
-  m_Name: WallWhiteBox (3)
+  m_Name: WallUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2412331478342300642}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -334.58, y: -201.7, z: 41.76168}
+  m_LocalPosition: {x: -334.58, y: -201.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -50,7 +50,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0e079224ba7734d6683a2406f7c4a620, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

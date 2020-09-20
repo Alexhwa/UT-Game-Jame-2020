@@ -13,7 +13,7 @@ public class EnemyController : PickupController
     public float attackEndLag = 2;
 
     protected Animator anim;
-    public EnemyState enemyState = EnemyState.NotAttacking; 
+    public EnemyState enemyState = EnemyState.NotAttacking;
 
     public enum EnemyState
     {
@@ -22,10 +22,7 @@ public class EnemyController : PickupController
 
     public override void Start()
     {
-        if (player == null)
-        {
-            player = GameObject.FindGameObjectWithTag("Player");
-        }
+        base.Start();
         anim = GetComponentInChildren<Animator>();
         anim.SetFloat("Offset", Random.Range(0f, 3f));
     }
@@ -34,7 +31,7 @@ public class EnemyController : PickupController
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Pickup") && state != PickUpState.PickedUp)
         {
-            if (collision.GetComponent<PickupController>().DoesDamage())
+            if (collision.GetComponent<PickupController>().DoesDamage() && collision.gameObject != gameObject)
             {
                 GetHit(collision.GetComponentInChildren<PickupController>());
             }
@@ -68,7 +65,7 @@ public class EnemyController : PickupController
     public virtual void MoveTowardPlayer()
     {
         var dirAtPlayer = player.transform.position - transform.position;
-        transform.DOMove(transform.position + Vector3.Normalize(dirAtPlayer) * moveSpeed / 10, .1f);
+        rb.velocity = Vector3.Normalize(dirAtPlayer) * moveSpeed / 10;
     }
     public virtual void Attack()
     {
@@ -79,10 +76,14 @@ public class EnemyController : PickupController
     {
         return enemyState != EnemyState.Attacking;
     }
+    public override void PickUp(SwordController sword)
+    {
+        base.PickUp(sword);
+    }
     public override void Discard()
     {
         //Push away on release
-        transform.DOLocalMove(transform.position + transform.parent.up * 4, .3f).SetEase(Ease.OutCubic);
+        rb.velocity = transform.parent.up * 20;
         base.Discard();
         playerOwned = true;
         StartCoroutine(ResetPlayerOwned(.3f));
@@ -102,6 +103,7 @@ public class EnemyController : PickupController
     }
     public virtual void GetHit(PickupController pickup)
     {
+        print("Get Hit reached");
         var ps = pickup.GetComponentInChildren<ParticleSystem>();
         if (ps != null) {
             ps.Play();
@@ -116,6 +118,6 @@ public class EnemyController : PickupController
         Vector3 recoilForce = transform.position - player.transform.position;
         recoilForce = Vector3.Normalize(recoilForce);
         transform.DOKill();
-        transform.DOMove(transform.position + recoilForce * hitter.weaponKnockback, .3f).SetEase(Ease.OutCubic);
+        rb.velocity = recoilForce * hitter.weaponKnockback;
     }
 }

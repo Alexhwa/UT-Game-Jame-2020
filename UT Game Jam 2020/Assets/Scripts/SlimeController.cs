@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlimeController : MonoBehaviour
+public class SlimeController : EnemyController
 {
+    [Header("Slime Variables")]
     public float jumpCooldown;
     public float jumpEndLag;
-    public MoveState moveState = MoveState.NotMoving; 
+    public MoveState moveState = MoveState.NotJumping;     
     
     public enum MoveState
     {
         NotJumping, Jumping, JumpEndLag
     }
-    
     public override void Start()
     {
         base.Start();
@@ -23,8 +23,7 @@ public class SlimeController : MonoBehaviour
         anim.SetTrigger("Jumping");
         var dirAtPlayer = player.transform.position - transform.position;
         
-        //REPLACE THIS LINE WITH JUMP ANIMATION
-        transform.DOMove(transform.position + Vector3.Normalize(dirAtPlayer) * moveSpeed / 10, .1f);
+        Debug.Log("Successful call to jump animation.");
         
         ResetJump(jumpCooldown);
         enemyState = EnemyState.NotAttacking;
@@ -36,7 +35,7 @@ public class SlimeController : MonoBehaviour
     protected IEnumerator ResetJump(float delay)
     {
         yield return new WaitForSeconds(delay);
-        enemyState = MoveState.JumpEndLag;
+        moveState = MoveState.JumpEndLag;
         StartCoroutine(ResetJumpLag(jumpEndLag));
     }
     protected IEnumerator ResetJumpLag(float delay)

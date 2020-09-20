@@ -465,12 +465,12 @@ PrefabInstance:
     - target: {fileID: 5486882929569872026, guid: f541f3af18bd3d84e912d6c5af9b3511,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1900
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 5486882929569872026, guid: f541f3af18bd3d84e912d6c5af9b3511,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 336
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 5486882929569872026, guid: f541f3af18bd3d84e912d6c5af9b3511,
         type: 3}
@@ -550,7 +550,7 @@ PrefabInstance:
     - target: {fileID: 3287416840385633876, guid: 51ca27faf7d0352449848c807545c00c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3287416840385633877, guid: 51ca27faf7d0352449848c807545c00c,
         type: 3}
@@ -691,12 +691,7 @@ PrefabInstance:
     - target: {fileID: 5486882929569872025, guid: f541f3af18bd3d84e912d6c5af9b3511,
         type: 3}
       propertyPath: m_Text
-      value: Resume
-      objectReference: {fileID: 0}
-    - target: {fileID: 5486882929569872025, guid: f541f3af18bd3d84e912d6c5af9b3511,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 300
+      value: Play
       objectReference: {fileID: 0}
     - target: {fileID: 5486882929569872026, guid: f541f3af18bd3d84e912d6c5af9b3511,
         type: 3}
@@ -736,7 +731,7 @@ PrefabInstance:
     - target: {fileID: 5486882929569872026, guid: f541f3af18bd3d84e912d6c5af9b3511,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5486882929569872026, guid: f541f3af18bd3d84e912d6c5af9b3511,
         type: 3}
@@ -756,7 +751,7 @@ PrefabInstance:
     - target: {fileID: 5486882929569872026, guid: f541f3af18bd3d84e912d6c5af9b3511,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 6.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5486882929569872026, guid: f541f3af18bd3d84e912d6c5af9b3511,
         type: 3}
@@ -766,12 +761,12 @@ PrefabInstance:
     - target: {fileID: 5486882929569872026, guid: f541f3af18bd3d84e912d6c5af9b3511,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1900.46
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 5486882929569872026, guid: f541f3af18bd3d84e912d6c5af9b3511,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 336
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 5486882929569872026, guid: f541f3af18bd3d84e912d6c5af9b3511,
         type: 3}
@@ -825,7 +820,7 @@ PrefabInstance:
     - target: {fileID: 3287416840385633876, guid: 51ca27faf7d0352449848c807545c00c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3287416840385633876, guid: 51ca27faf7d0352449848c807545c00c,
         type: 3}
@@ -1004,7 +999,9 @@ PrefabInstance:
     - target: {fileID: 7401714496566131104, guid: b75d09cc87c8b4345bc80d82030e11dd,
         type: 3}
       propertyPath: m_Text
-      value: Game Paused
+      value: 'Sword of Legen''t: Excalin''t
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 7401714496566131104, guid: b75d09cc87c8b4345bc80d82030e11dd,
         type: 3}

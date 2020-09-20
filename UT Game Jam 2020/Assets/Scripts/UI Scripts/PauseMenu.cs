@@ -7,11 +7,6 @@ public class PauseMenu : Menu
     public GameObject pauseMenu;
 
     public static bool isPaused = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     void Update()
     {

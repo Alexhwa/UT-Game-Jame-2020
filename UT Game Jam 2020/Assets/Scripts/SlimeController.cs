@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class SlimeController : EnemyController
 {
+    [Header("Slime Variables")]
     public float jumpCooldown;
     public float jumpEndLag;
-    public MoveState moveState = MoveState.NotMoving; 
+    public MoveState moveState = MoveState.NotJumping;     
     
     public enum MoveState
     {
         NotMoving, NotJumping, Jumping, JumpEndLag
     }
-    
     public override void Start()
     {
         base.Start();
@@ -23,8 +23,7 @@ public class SlimeController : EnemyController
         anim.SetTrigger("Jumping");
         var dirAtPlayer = player.transform.position - transform.position;
         
-        //REPLACE THIS LINE WITH JUMP ANIMATION
-        //transform.DOMove(transform.position + Vector3.Normalize(dirAtPlayer) * moveSpeed / 10, .1f);
+        Debug.Log("Successful call to jump animation.");
         
         ResetJump(jumpCooldown);
         enemyState = EnemyState.NotAttacking;

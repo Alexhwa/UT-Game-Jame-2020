@@ -26,6 +26,9 @@ public class SwordController : MonoBehaviour
     private bool hasBlade;
     public Transform bladePos;
 
+    //Audio var
+    public AudioClip WizardSwordAttack;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -120,6 +123,7 @@ public class SwordController : MonoBehaviour
     }
     public void SwingBlade()
     {
+        FindObjectOfType<AudioManager>().PlayOneShot(WizardSwordAttack);
         swinging = true;
         anim.SetTrigger("Swinging");
         StartCoroutine(ResetSwinging(swingCooldown));

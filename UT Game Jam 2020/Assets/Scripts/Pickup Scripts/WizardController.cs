@@ -12,6 +12,7 @@ public class WizardController : EnemyController
     public float swordOffset;
 
     private List<ProjectileController> swords;
+    public AudioClip WizardSwordSummon;
 
     public override void Start()
     {
@@ -35,6 +36,7 @@ public class WizardController : EnemyController
             var swordSpriteRend = swordInst.GetComponentInChildren<SpriteRenderer>();
             swordSpriteRend.DOFade(1, swordOffset).SetEase(Ease.InCubic);
             projCntrl.state = PickUpState.Disabled;
+            audioManager.PlayOneShot(WizardSwordSummon);
 
             //Rotation
             Vector3 swordRotation = swordInst.transform.eulerAngles;

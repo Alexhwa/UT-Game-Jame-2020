@@ -14,8 +14,8 @@ public class EnemyController : PickupController
 
     protected Animator anim;
     public EnemyState enemyState = EnemyState.NotAttacking;
-
     protected bool pushedBack;
+    public AudioClip HitSFX;
     public enum EnemyState
     {
         NotAttacking, Attacking, AttackEndLag
@@ -34,6 +34,7 @@ public class EnemyController : PickupController
         {
             if (collision.GetComponent<PickupController>().DoesDamage() && collision.gameObject != gameObject && !pushedBack)
             {
+                audioManager.PlayOneShot(HitSFX);
                 GetHit(collision.GetComponentInChildren<PickupController>());
             }
         }

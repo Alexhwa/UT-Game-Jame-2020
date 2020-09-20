@@ -9,7 +9,6 @@ public class AudioManager : MonoBehaviour
     public AudioSource sfxAudio;
     public AudioSource ambienceAudio;
 
-
     public void PlayOneShot(AudioClip clip) {
         sfxAudio.PlayOneShot(clip);
     }

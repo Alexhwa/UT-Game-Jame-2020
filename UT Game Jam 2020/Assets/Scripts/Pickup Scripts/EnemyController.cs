@@ -102,6 +102,10 @@ public class EnemyController : PickupController
     }
     public virtual void GetHit(PickupController pickup)
     {
+        var ps = pickup.GetComponentInChildren<ParticleSystem>();
+        if (ps != null) {
+            ps.Play();
+        }
         TakeRecoil(pickup);
         health--;
         print("Hit. Health = " + health);
@@ -110,7 +114,7 @@ public class EnemyController : PickupController
     {
         //Recoil
         Vector3 recoilForce = transform.position - player.transform.position;
-        Vector3.Normalize(recoilForce);
+        recoilForce = Vector3.Normalize(recoilForce);
         transform.DOKill();
         transform.DOMove(transform.position + recoilForce * hitter.weaponKnockback, .3f).SetEase(Ease.OutCubic);
     }

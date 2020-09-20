@@ -95,11 +95,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43d93b3138183e04ca5fef3c718c95ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponSwingSpeed: 1
+  weaponDurability: 1
+  weaponDamage: 1
+  weaponKnockback: 4
+  playerOwned: 0
   state: 1
   speed: 7
-  damage: 0
+  projDamage: 0
   dieTime: 10
-  playerOwned: 0
 --- !u!70 &3869561220916885958
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

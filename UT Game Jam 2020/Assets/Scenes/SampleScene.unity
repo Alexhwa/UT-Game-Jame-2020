@@ -235,31 +235,6 @@ MonoBehaviour:
   _outlineColor: {r: 1, g: 1, b: 1, a: 1}
   _sampleDistance: 2.08
   shader: {fileID: 4800000, guid: 832eb2012bb8d4b559dd13b098d55b1e, type: 3}
---- !u!1 &1429748780 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1341440281578226595, guid: 5f90813bfa8f16748a3158fb6ad297f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1341440282870611855}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1429748783
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1429748780}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 88780671e244b9f45901edef12d65add, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1431676163
 GameObject:
   m_ObjectHideFlags: 0
